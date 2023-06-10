@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+    .custom-btn {
+  width: 250px;
+  height: 120px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+.ar1 {
+    margin-left:1100px;}
+
+/* 3 */
+.btn-3 {
+  background: rgb(0,172,238);
+background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+  width: 260px;
+  height: 130px;
+  line-height: 50px;
+  padding: 0;
+  border: none;
+  font-size:30px;
+  margin-right:80px;
+  margin-top:80px;
+
+}
+.btn-3 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.btn-3:before,
+.btn-3:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 0;
+   background: rgba(2,126,251,1);
+  transition: all 0.3s ease;
+}
+.btn-3:before {
+  height: 0%;
+  width: 2px;
+}
+.btn-3:after {
+  width: 0%;
+  height: 2px;
+}
+.btn-3:hover{
+   background: transparent;
+  box-shadow: none;
+}
+.btn-3:hover:before {
+  height: 100%;
+}
+.btn-3:hover:after {
+  width: 100%;
+}
+.btn-3 span:hover{
+   color: rgba(2,126,251,1);
+}
+.btn-3 span:before,
+.btn-3 span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+   background: rgba(2,126,251,1);
+  transition: all 0.3s ease;
+}
+.btn-3 span:before {
+  width: 2px;
+  height: 0%;
+}
+.btn-3 span:after {
+  width: 0%;
+  height: 2px;
+}
+.btn-3 span:hover:before {
+  height: 100%;
+}
+.btn-3 span:hover:after {
+  width: 100%;
+}
+.nons = {display: none;}
+
+    </style>
+
+    <title>{% block title%}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+
+        <a href="{% url 'home' %}"
+           class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"><h5>
+            Федеральная кадастровая палата</h5></a>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="{% url 'about' %}" class="nav-link px-2 link-dark">
+                <ya-tr-span data-index="14-0" data-translated="true" data-source-lang="en" data-target-lang="ru"
+                            data-value="Pricing" data-translation="О нас" data-ch="1" data-type="trSpan">О нас
+                </ya-tr-span>
+            </a></li>
+            <li><a href="{% url 'doing' %}" class="nav-link px-2 link-dark">
+                <ya-tr-span data-index="13-0" data-translated="true" data-source-lang="en" data-target-lang="ru"
+                            data-value="Features" data-translation="Услуги" data-ch="1" data-type="trSpan"
+                            data-selected="false">Услуги
+                </ya-tr-span>
+            </a></li>
+            <li><a href="{% url 'contacts' %}" class="nav-link px-2 link-dark">
+                <ya-tr-span data-index="15-0" data-translated="true" data-source-lang="en" data-target-lang="ru"
+                            data-value="FAQs" data-translation="Контакты" data-ch="1" data-type="trSpan">Контакты
+                </ya-tr-span>
+            </a></li>
+
+        </ul>
+
+        {% if request.user.is_authenticated %}
+        <li class="last">{{user.username}} | <a href="{% url 'mytask' %}">Мои заявки</a> | <a href="{% url 'logout' %}">Выйти</a>
+        </li>
+        {% else %}
+        <div class="col-md-3 text-end">
+            <a href="{% url 'login' %}">
+                <button type="button" class="btn btn-outline-primary me-2">
+                    <ya-tr-span data-index="17-0" data-translated="true" data-source-lang="en" data-target-lang="ru"
+                                data-value="Login" data-translation="Вход" data-ch="0" data-type="trSpan">Вход
+                    </ya-tr-span>
+                </button>
+            </a>
+            <a href="{% url 'register' %}">
+                <button type="button" class="btn btn-primary">
+                    <ya-tr-span data-index="17-1" data-translated="true" data-source-lang="en" data-target-lang="ru"
+                                data-value="Sign-up" data-translation="Регистрация" data-ch="0" data-type="trSpan"
+                                data-selected="false">Регистрация
+                    </ya-tr-span>
+                </button>
+            </a></div>
+        {% endif %}
+
+    </header>
+    {% block content%}{% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title%} Регистрация прав {% endblock %}
+{% block content %}
+
+{% if request.user.is_authenticated %}
+    {% if update %}
+     <span>РЕДАКТИРОВАНИЕ - РЕГИСТРАЦИЯ ПРАВ</span>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p  }}
+            <button type="submit">РЕДАКТИРОВАТЬ</button>
+
+        </form>
+    {% else %}
+        <span>РЕГИСТРАЦИЯ ПРАВ</span>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить</button>
+        <span> {{ error }}</span>
+    </form>
+{% endif %}
+
+{% else %}
+<p class="">Пожалуйста автаризуйтесь</p>
+{% endif %}
+{% endblock %}

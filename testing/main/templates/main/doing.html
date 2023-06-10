@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title%} Услуги {% endblock %}
+{% block content %}
+
+{% if request.user.is_authenticated %}
+<a href="{% url 'register_right' %}">
+    <button class="custom-btn btn-3"><span>РЕГИСТРАЦИЯ ПРАВ</span></button>
+</a>
+<a href="{% url 'form2' %}">
+    <button class="custom-btn btn-3"><span>КАДАСТРОВЫЙ УЧЁТ</span></button>
+</a>
+<a href="{% url 'form3' %}">
+    <button class="custom-btn btn-3"><span>ЕДИНАЯ ПРОЦЕДУРА</span></button>
+</a>
+<a href="{% url 'form4' %}">
+    <button class="custom-btn btn-3"><span>ОФОРМИТЬ НЕДВИЖЕМОСТЬ</span></button>
+</a>
+<a href="{% url 'form5' %}">
+    <button class="custom-btn btn-3"><span>ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</span></button>
+</a>
+<a href="{% url 'form6' %}">
+    <button class="custom-btn btn-3"><span>ВЫЕЗДНОЕ ОБСЛУЖИВАНИЕ</span></button>
+</a>
+{% else %}
+<p class="">Пожалуйста автаризуйтесь</p>
+{% endif %}
+{% endblock %}

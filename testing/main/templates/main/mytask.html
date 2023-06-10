@@ -1,0 +1,86 @@
+{% extends 'main/base.html' %}
+
+{% block title%} Регистрация {% endblock %}
+
+{% block content%}
+<span class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"><h5>Мои заявки</h5></span>
+<form method="get">
+      <input type="text" name="q">
+      <input type="submit" value="Поиск">
+    </form>
+{%if table%}
+
+{% for task in table %}
+
+{% if task.status == '1' %}
+<div class="alert alert-warning mt-2">
+    <h3>{{task.razdel}}</h3>
+
+    <p>На рассмотрении</p>
+    <div class="ar1">
+        {% if task.razdel == 'Регистрация прав' %}
+        <a class="nav-link link-dark" href="{% url 'update' task.id %}">Редактировать</a>
+        <a class="nav-link link-dark" href="{% url 'delit1' task.id %}">Удалить</a></div>
+    {% elif task.razdel == 'Кадастровый учёт' %}
+    <a class="nav-link link-dark" href="{% url 'update2' task.id %}">Редактировать</a>
+    <a class="nav-link link-dark" href="{% url 'delit2' task.id %}">Удалить</a></div>
+{% elif task.razdel == 'Единая процедура' %}
+<a class="nav-link link-dark" href="{% url 'update3' task.id %}">Редактировать</a>
+<a class="nav-link link-dark" href="{% url 'delit3' task.id %}">Удалить</a></div>
+{% elif task.razdel == 'Оформление недвижемости' %}
+<a class="nav-link link-dark" href="{% url 'update4' task.id %}">Редактировать</a>
+<a class="nav-link link-dark" href="{% url 'delit4' task.id %}">Удалить</a></div>
+{% elif task.razdel == 'Получить консультацию' %}
+<a class="nav-link link-dark" href="{% url 'update5' task.id %}">Редактировать</a>
+<a class="nav-link link-dark" href="{% url 'delit5' task.id %}">Удалить</a></div>
+{% else %}
+<a class="nav-link link-dark" href="{% url 'update6' task.id %}">Редактировать</a>
+<a class="nav-link link-dark" href="{% url 'delit6' task.id %}">Удалить</a></div>
+{% endif %}
+</div>
+{% elif task.status == '2' %}
+<div class="alert alert-success mt-2">
+    <h3>{{task.razdel}}</h3>
+    <p>Принята</p>
+    {% if task.razdel == 'Регистрация прав' %}
+    <a class="nav-link link-dark ar1" href="{% url 'delit1' task.id %}">Удалить</a>
+    {% elif task.razdel == 'Кадастровый учёт' %}
+    <a class="nav-link link-dark ar1" href="{% url 'delit2' task.id %}">Удалить</a>
+    {% elif task.razdel == 'Единая процедура' %}
+    <a class="nav-link link-dark ar1" href="{% url 'delit3' task.id %}">Удалить</a>
+    {% elif task.razdel == 'Оформление недвижемости' %}
+    <a class="nav-link link-dark ar1" href="{% url 'delit4' task.id %}">Удалить</a>
+    {% elif task.razdel == 'Получить консультацию' %}
+    <a class="nav-link link-dark ar1" href="{% url 'delit5' task.id %}">Удалить</a>
+    {% else %}
+    <a class="nav-link link-dark ar1" href="{% url 'delit6' task.id %}">Удалить</a>
+    {% endif %}
+
+</div>
+{%else%}
+<div class="alert alert-danger mt-2">
+    <h3>{{task.razdel}}</h3>
+    <p>Отказано</p>
+    {% if task.razdel == 'Регистрация прав' %}
+    <a class="nav-link link-dark ar1" href="{% url 'delit1' task.id %}">Удалить</a>
+    {% elif task.razdel == 'Кадастровый учёт' %}
+    <a class="nav-link link-dark ar1" href="{% url 'delit2' task.id %}">Удалить</a>
+    {% elif task.razdel == 'Единая процедура' %}
+    <a class="nav-link link-dark ar1" href="{% url 'delit3' task.id %}">Удалить</a>
+    {% elif task.razdel == 'Оформление недвижемости' %}
+    <a class="nav-link link-dark ar1" href="{% url 'delit4' task.id %}">Удалить</a>
+    {% elif task.razdel == 'Получить консультацию' %}
+    <a class="nav-link link-dark ar1" href="{% url 'delit5' task.id %}">Удалить</a>
+    {% else %}
+    <a class="nav-link link-dark ar1" href="{% url 'delit6' task.id %}">Удалить</a>
+    {% endif %}
+
+</div>
+{%endif%}
+
+{% endfor %}
+{%else%}
+<h2>Ничего нет</h2>
+{%endif%}
+
+{% endblock %}

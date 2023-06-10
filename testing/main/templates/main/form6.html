@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+
+{% block title%} Выездное обслуживание {% endblock %}
+{% block content %}
+
+{% if request.user.is_authenticated %}
+
+    <span>РЕГИСТРАЦИЯ ПРАВ</span>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Отправить</button>
+    <span> {{ error }}</span>
+</form>
+
+{% else %}
+<p class="">Пожалуйста автаризуйтесь</p>
+{% endif %}
+{% endblock %}
